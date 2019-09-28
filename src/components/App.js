@@ -8,7 +8,7 @@ const App = (props) => {
   const [user, setUser] = useState(null);
   return (
     <div className="container">
-      <h1>Perx Project</h1>
+      <h1>Perx React</h1>
       <div className="search">
         <SearchBar onSelectUser={setUser} />
       </div>

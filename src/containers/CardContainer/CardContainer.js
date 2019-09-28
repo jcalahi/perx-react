@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Empty, Spin } from 'antd';
 // components
 import CardProfile from '../../components/CardProfile/CardProfile';
 import CardProfileOrg from '../../components/CardProfileOrg/CardProfileOrg';
@@ -26,85 +25,55 @@ class CardContainer extends Component {
     window.open(url, "");
   }
 
-  renderOrgs = () => {
-    const { orgs } = this.props.userData;
-
-    if (orgs && orgs.length > 0) {
-      return orgs.map(org => {
-        return (
-          <CardProfileOrg 
-            key={org.id}
-            loading={this.props.isFetchingOrgs}
-            image={org.avatar_url} 
-            title={org.login} 
-          />
-        );
-      });
-    } else {
+  renderOrgs = source => {
+    return source.map(org => {
       return (
-        <div style={{ width: '100%' }}>
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        </div>
+        <CardProfileOrg 
+          key={org.id}
+          image={org.avatar_url} 
+          title={org.login} 
+        />
       );
-    }
+    });
   }
 
-  renderRepos = () => {
-    const { repos } = this.props.userData;
-
-    if (repos && repos.length > 0) {
-      return repos.map(repo => {
-        return (
-          <CardProfileRepo
-            onCardClick={this.handleCardClick}
-            key={repo.id}
-            loading={this.props.isFetchingRepos}
-            image={repo.avatar_url} 
-            title={repo.name} 
-            description={repo.description}
-            numOfForks={repo.forks}
-            numOfStars={repo.stargazers_count}
-            url={repo.html_url}
-          />
-        );
-      });
-    } else {
+  renderRepos = source => {
+    return source.map(repo => {
       return (
-        <div style={{ width: '100%' }}>
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        </div>
+        <CardProfileRepo
+          onCardClick={this.handleCardClick}
+          key={repo.id}
+          image={repo.avatar_url} 
+          title={repo.name} 
+          description={repo.description}
+          numOfForks={repo.forks}
+          numOfStars={repo.stargazers_count}
+          url={repo.html_url}
+        />
       );
-    }
+    });
   }
 
   render() {
     if (!this.props.user) return null;
 
-    const { avatar_url: image, login, html_url: link, id } = this.props.userData;
+    const { avatar_url: image, login, html_url: link, id, orgs, repos } = this.props.userData;
     const { isFetchingOrgs, isFetchingRepos } = this.props;
 
     return (
       <div className="card-container">
         <CardProfile 
-            id={id}
-            image={image} 
-            link={link} 
-            username={login} 
-          />
+          id={id}
+          image={image} 
+          link={link} 
+          username={login} 
+        />
         <div className="card-container__list">
-          <CardProfileGroup title="Organizations">
-            { 
-              isFetchingOrgs 
-              ? <Spin /> 
-              : this.renderOrgs() 
-            }
+          <CardProfileGroup title="Organizations" dataSource={orgs} loading={isFetchingOrgs}>
+            {(dataSource) => this.renderOrgs(dataSource)}
           </CardProfileGroup>
-          <CardProfileGroup title="Repositories">
-            {
-              isFetchingRepos
-              ? <Spin />
-              : this.renderRepos()
-            }
+          <CardProfileGroup title="Repositories" dataSource={repos} loading={isFetchingRepos}>
+            {(dataSource) => this.renderRepos(dataSource)}
           </CardProfileGroup>
         </div>
       </div>

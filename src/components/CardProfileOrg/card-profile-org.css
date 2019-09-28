@@ -1,5 +1,6 @@
 .card-org {
-  padding: 0 3px;
+  padding: 0 4px;
+  margin-bottom: 8px;
 }
 
 .card-org .card-org__item {

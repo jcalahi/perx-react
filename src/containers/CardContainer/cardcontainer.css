@@ -1,0 +1,7 @@
+.card-container {
+  display: flex;
+}
+
+.card-container__list {
+  flex: 1;
+}

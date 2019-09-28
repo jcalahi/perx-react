@@ -8,7 +8,7 @@ const { Paragraph } = Typography;
 
 const CardProfileRepo = (props) => {
   return (
-    <div className="card-repo">
+    <div className="card-repo" onClick={() => props.onCardClick(props.url)}>
       <Card hoverable size="small">
         <Meta title={props.title} description={<Paragraph ellipsis={{ rows: 3 }}>{props.description}</Paragraph>} />
         <div className="card-repo__info">Forks: {props.numOfForks}</div>

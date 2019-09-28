@@ -1,3 +1,9 @@
-.card-profile-group {
+.card-group {
   margin-bottom: 20px;
+}
+
+.card-group .card-group__item {
+  display: flex;
+  flex-flow: wrap;
+  margin: 0 -3px;
 }

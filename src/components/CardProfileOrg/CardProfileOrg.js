@@ -7,8 +7,8 @@ const { Meta } = Card;
 
 const CardProfileOrg = (props) => {
   return (
-    <div style={{ padding: '0 3px' }}>
-      <Card style={{ width: 240, marginTop: 16 }} hoverable>
+    <div className="card-org">
+      <Card className="card-org__item" hoverable>
         <Meta
           avatar={<Avatar src={props.image} />}
           title={props.title}

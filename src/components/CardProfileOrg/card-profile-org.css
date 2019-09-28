@@ -1,0 +1,7 @@
+.card-org {
+  padding: 0 3px;
+}
+
+.card-org .card-org__item {
+  width: 240px;
+}

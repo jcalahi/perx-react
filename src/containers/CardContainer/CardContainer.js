@@ -22,6 +22,10 @@ class CardContainer extends Component {
     }
   }
 
+  handleCardClick = (url) => {
+    window.open(url, "");
+  }
+
   renderOrgs = () => {
     const { orgs } = this.props.userData;
 
@@ -37,7 +41,11 @@ class CardContainer extends Component {
         );
       });
     } else {
-      return <div style={{ width: '100%', textAlign: 'center' }}><Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /></div>;
+      return (
+        <div style={{ width: '100%' }}>
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        </div>
+      );
     }
   }
 
@@ -47,7 +55,8 @@ class CardContainer extends Component {
     if (repos && repos.length > 0) {
       return repos.map(repo => {
         return (
-          <CardProfileRepo 
+          <CardProfileRepo
+            onCardClick={this.handleCardClick}
             key={repo.id}
             loading={this.props.isFetchingRepos}
             image={repo.avatar_url} 
@@ -55,11 +64,16 @@ class CardContainer extends Component {
             description={repo.description}
             numOfForks={repo.forks}
             numOfStars={repo.stargazers_count}
+            url={repo.html_url}
           />
         );
       });
     } else {
-      return <div style={{ width: '100%', textAlign: 'center' }}><Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /></div>;
+      return (
+        <div style={{ width: '100%' }}>
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        </div>
+      );
     }
   }
 

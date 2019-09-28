@@ -1,5 +1,7 @@
+import * as types from '../constants';
+
 export const setLoading = (name, isLoading) => ({
-  type: 'IS_LOADING',
+  type: types.IS_LOADING,
   name,
   isLoading
 });

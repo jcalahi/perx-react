@@ -6,7 +6,7 @@ import { fetchOrgsOK } from './actions/fetch-orgs';
 import { fetchReposOK } from './actions/fetch-repos';
 import { setLoading } from './actions/loading'; 
 
-import { GITHUB_SEARCH_API, GITHUB_USERS_API } from './constants';
+import { GITHUB_SEARCH_API, GITHUB_USERS_API, SEARCH_USER, FETCH_ORGS, FETCH_REPOS } from './constants';
 
 export function* searchUser(action) {
   const requestURL = `${GITHUB_SEARCH_API}/search/users?q=${action.payload}`;
@@ -48,7 +48,7 @@ export function* fetchRepos(action) {
 }
 
 export default function* () {
-  yield takeLatest('SEARCH_USER', searchUser);
-  yield takeLatest('FETCH_ORGS', fetchOrgs);
-  yield takeLatest('FETCH_REPOS', fetchRepos);
+  yield takeLatest(SEARCH_USER, searchUser);
+  yield takeLatest(FETCH_ORGS, fetchOrgs);
+  yield takeLatest(FETCH_REPOS, fetchRepos);
 }

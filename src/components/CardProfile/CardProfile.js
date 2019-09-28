@@ -5,7 +5,7 @@ import './card-profile.css';
 
 const { Meta } = Card;
 
-const CardDesciption = (props) => {
+export const CardDesciption = (props) => {
   return (
     <Fragment>
       <div><a href={props.link}>{props.link}</a></div>

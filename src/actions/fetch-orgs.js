@@ -1,9 +1,11 @@
+import * as types from '../constants';
+
 export const fetchOrgs = userLogin => ({
-  type: 'FETCH_ORGS',
+  type: types.FETCH_ORGS,
   payload: userLogin
 });
 
 export const fetchOrgsOK = response => ({
-  type: 'FETCH_ORGS_OK',
+  type: types.FETCH_ORGS_OK,
   payload: response
 });

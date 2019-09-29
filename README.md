@@ -1,3 +1,7 @@
+App is deployed in Heroku https://perx-react-project.herokuapp.com/
+Please note that it takes sometime initially to load the page, or could throw Application Error 'only on first load';
+Kindly refresh the page, when it does.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
